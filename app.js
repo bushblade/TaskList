@@ -60,6 +60,7 @@ function clearTasks() {
   taskList = [];
   //empty table
   tableBody.innerHTML = '';
+  //clear local
   localStorage.clear();
 }
 
