@@ -7,17 +7,17 @@ const tableBody = document.getElementById('table-body');
 const clearBtn = document.getElementById('clear');
 
 // store the tasks in an array
-let taskList;
+let taskList = ['Delete Me...'];
 
 // load event listeners
 init();
 
 function init() {
-  document.addEventListener('DOMContentLoaded', getLocal);
+  // document.addEventListener('DOMContentLoaded', getLocal());
   form.addEventListener('submit', addTask);
   clearBtn.addEventListener('click', clearTasks);
   tableBody.addEventListener('click', deleteTask);
-  getLocal();
+  getLocal(taskList);
   taskList.forEach(writeTask);
 }
 
@@ -34,7 +34,7 @@ function addTask(e) {
 }
 
 //populate tableBody with tasks from taskList
-function writeTask(task){
+function writeTask(task) {
   const tr = document.createElement('tr');
   const a = '<a class="delete is-pulled-right"></a>';
   tr.innerHTML = `<td>${task}${a}</td>`;
@@ -43,13 +43,11 @@ function writeTask(task){
 }
 
 //delete a task
-function deleteTask(e){
-  if (e.target.classList.contains('delete')){
-    console.log('removed '+e.target.parentElement.textContent);
+function deleteTask(e) {
+  if (e.target.classList.contains('delete')) {
     //remove it from the array
     let taskToRemove = taskList.indexOf(e.target.parentElement.textContent);
     taskList.splice(taskToRemove, 1);
-    console.log(taskList);
     //remove it from the table
     e.target.parentElement.parentElement.remove();
   }
@@ -57,20 +55,24 @@ function deleteTask(e){
 }
 
 //clear all tasks
-function clearTasks(){
+function clearTasks() {
   //empty array
-  taskList  = [];
+  taskList = [];
   //empty table
   tableBody.innerHTML = '';
-  setLocal(taskList);
+  localStorage.clear();
 }
 
 //add local storage
 //set local storage
-function setLocal(array){
+function setLocal(array) {
   localStorage.setItem('tasks', JSON.stringify(array));
 }
 //get local storage
-function getLocal(){
-  taskList = JSON.parse(localStorage.getItem('tasks'));
+function getLocal(array) {
+  if (localStorage.getItem('tasks') === null) {
+    setLocal(array);
+  } else {
+    taskList = JSON.parse(localStorage.getItem('tasks'));
+  }
 }
