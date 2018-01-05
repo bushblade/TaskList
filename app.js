@@ -7,8 +7,7 @@ const tableBody = document.getElementById('table-body');
 const clearBtn = document.getElementById('clear');
 
 // store the tasks in an array
-let taskList = [
-  {
+let taskList = [{
     task: 'Delete me....',
     checkClass: ''
   },
@@ -19,7 +18,7 @@ let taskList = [
 ];
 
 // load event listeners
-(function() {
+(function () {
   // document.addEventListener('DOMContentLoaded', getLocal());
   form.addEventListener('submit', addTask);
   clearBtn.addEventListener('click', clearTasks);
@@ -90,8 +89,8 @@ function deleteOrCheck(e) {
 
 //clear all tasks
 function clearTasks() {
-  let confirmed =  confirm('Remove all stored tasks?');
-  if (confirmed === true){
+  let confirmed = confirm('Remove all stored tasks?');
+  if (confirmed === true) {
     //empty array
     taskList = [];
     //empty table
