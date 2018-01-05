@@ -8,3 +8,7 @@ body {
   text-decoration: line-through;
   color: hsl(0, 0%, 71%);
 }
+
+#cancelBtn, #confirmBtn, #okBtn {
+  display: none;
+}

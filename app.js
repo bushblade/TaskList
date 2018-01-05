@@ -5,6 +5,11 @@ const form = document.getElementById('task-form');
 const taskInput = document.getElementById('task-input');
 const tableBody = document.getElementById('table-body');
 const clearBtn = document.getElementById('clear');
+const modal = document.querySelector('.modal');
+const modalMessage = document.querySelector('#message');
+const cancelBtn = document.getElementById('cancelBtn');
+const confirmBtn = document.getElementById('confirmBtn');
+const okBtn = document.getElementById('okBtn');
 
 // store the tasks in an array
 let taskList = [{
@@ -21,7 +26,7 @@ let taskList = [{
 (function () {
   // document.addEventListener('DOMContentLoaded', getLocal());
   form.addEventListener('submit', addTask);
-  clearBtn.addEventListener('click', clearTasks);
+  clearBtn.addEventListener('click', function(){warning('Remove all tasks from storage?', true);});
   tableBody.addEventListener('click', deleteOrCheck);
   getLocal(taskList);
   taskList.forEach(writeTask);
@@ -36,12 +41,13 @@ function Task(task, checkClass = '') {
 
 //get task and push to taskList array
 function addTask(e) {
-  if (taskInput.value === '') {
-    alert('Please enter a task'); //change this for a better alert
-  } else {
+  if (taskInput.value.replace(/\s/g, "").length > 0) {
     taskList.push(new Task(taskInput.value));
     //write the task with the last one added to array
     writeTask(taskList[taskList.length - 1]);
+    taskInput.value = '';
+  } else {
+    warning('No text has been entered.');
     taskInput.value = '';
   }
   e.preventDefault();
@@ -76,11 +82,7 @@ function deleteOrCheck(e) {
     let taskText = e.target.textContent;
     for (i = 0; i < taskList.length; i++) {
       if (taskList[i].task === taskText) {
-        if (taskList[i].checkClass == '') {
-          taskList[i].checkClass = 'checked';
-        } else {
-          taskList[i].checkClass = '';
-        }
+        taskList[i].checkClass = taskList[i].checkClass === '' ? 'checked' : '';
       }
     }
   }
@@ -88,16 +90,14 @@ function deleteOrCheck(e) {
 }
 
 //clear all tasks
-function clearTasks() {
-  let confirmed = confirm('Remove all stored tasks?');
-  if (confirmed === true) {
+function clearTasks() {  
     //empty array
     taskList = [];
     //empty table
     tableBody.innerHTML = '';
     //clear local
-    localStorage.clear();
-  }
+    localStorage.clear();  
+    modalToggle();
 }
 
 //set local storage
@@ -112,4 +112,28 @@ function getLocal(array) {
   } else {
     taskList = JSON.parse(localStorage.getItem('tasks'));
   }
+}
+
+
+function warning(message, buttons = false) {
+  document.getElementById('close').addEventListener('click', modalToggle);
+  document.querySelector('.modal-close').addEventListener('click', modalToggle);
+  modalMessage.innerHTML = `${message}`;
+  modalToggle();
+  if (buttons === true){
+    cancelBtn.style.display = 'inline-block';
+    confirmBtn.style.display = 'inline-block';
+    okBtn.style.display = 'none';
+  }else{
+    cancelBtn.style.display = 'none';
+    confirmBtn.style.display = 'none';
+    okBtn.style.display = 'inline-block';
+  }
+  cancelBtn.addEventListener('click', modalToggle);
+  okBtn.addEventListener('click', modalToggle);
+  confirmBtn.addEventListener('click', clearTasks);
+}
+
+function modalToggle() {
+  modal.classList.toggle('is-active');
 }

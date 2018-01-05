@@ -68,6 +68,43 @@
     </div>
   </div>
 
+  <!-- alert modal -->
+  <!-- toggle modal with adding/removing class of is-active -->
+  <div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <!-- Any other Bulma elements you want -->
+      <article class="message is-warning">
+        <div class="message-header">
+          <p id="message" class="is-size-4"></p>
+          <button id="close" class="delete" aria-label="delete"></button>
+        </div>
+        <div class="message-body">
+          <div class="buttons is-centered">
+            <a class="button is-medium is-info" id="cancelBtn">
+              <span class="icon is-small">
+                <i class="fa fa-times"></i>
+              </span>
+              <span>Cancel</span>
+            </a>
+            <a class="button is-medium is-warning" id="confirmBtn">
+              <span class="icon is-small">
+                <i class="fa fa-check"></i>
+              </span>
+              <span>Confirm</span>
+            </a>
+            <a class="button is-medium is-primary" id="okBtn">
+              <span class="icon is-small">
+                <i class="fa fa-check"></i>
+              </span>
+              <span>OK</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
 
   <script src="app.js"></script>
 </body>
