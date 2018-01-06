@@ -1,4 +1,4 @@
-##My Task List Project
+## My Task List Project
 
 It seems everyone learning Javascript at some point makes a task/todo list, here is mine.
 
