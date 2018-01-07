@@ -7,4 +7,4 @@ It seems everyone learning Javascript at some point makes a task/todo list, here
 - Check tasks off
 - Delete tasks
 
-Hosted working example http://139.162.206.90/taskList/
+Hosted working example http://www.bushbladeprojects.co.uk/taskList/
