@@ -1,3 +1,8 @@
+html {
+	margin: 0;
+	padding: 0;
+}
+
 body {
   padding-top: 2rem;
   background-color: hsl(0, 0%, 96%);
@@ -11,4 +16,9 @@ body {
 
 #cancelBtn, #confirmBtn, #okBtn {
   display: none;
+}
+
+/* fix for bulma columns padding issue */
+.columns {
+  padding: 0;
 }

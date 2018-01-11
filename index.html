@@ -11,80 +11,80 @@
 </head>
 
 <body>
-
-
-  <div class="columns is-multiline">
-    <div class="column is-half is-offset-one-quarter">
-      <div class="notification is-dark">
-        <h1 class="title">Task List</h1>
-        <h2 class="subtitle">Enter a task below</h2>
+  <div class="container">
+    <div class="columns is-multiline">
+      <div class="column is-half is-offset-one-quarter">
+        <div class="notification is-dark">
+          <h1 class="title">Task List</h1>
+          <h2 class="subtitle">Enter a task below</h2>
+        </div>
+        <!-- form goes here -->
+        <form action="" id="task-form">
+          <div class="field">
+            <div class="control">
+              <input id="task-input" class="input is-medium" type="text" placeholder="Enter a task" value="">
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input id="submit" type="submit" value="Add Task" class="button is-primary">
+            </div>
+          </div>
+        </form>
       </div>
-      <!-- form goes here -->
-      <form action="" id="task-form">
-        <div class="field">
-          <div class="control">
-            <input id="task-input" class="input is-medium" type="text" placeholder="Enter a task" value="">
-          </div>
-        </div>
-        <div class="field">
-          <div class="control">
-            <input id="submit" type="submit" value="Add Task" class="button is-primary">
-          </div>
-        </div>
-      </form>
-    </div>
 
-    <div class="column is-half is-offset-one-quarter">
-      <!-- build task list here -->
-      <div class="box">
-        <h2 class="title is-4">Tasks</h2>
+      <div class="column is-half is-offset-one-quarter">
+        <!-- build task list here -->
+        <div class="box">
+          <h2 class="title is-4">Tasks</h2>
 
-        <table class="table is-fullwidth is-striped">
-          <tbody id="table-body">
-          </tbody>
-        </table>
+          <table class="table is-fullwidth is-striped">
+            <tbody id="table-body">
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="column is-half is-offset-one-quarter">
+        <button id="clear" class="button is-dark">Clear Tasks</button>
       </div>
     </div>
 
-    <div class="column is-half is-offset-one-quarter">
-      <button id="clear" class="button is-dark">Clear Tasks</button>
-    </div>
-  </div>
-
-  <!-- alert modal -->
-  <div class="modal">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-      <article class="message is-warning">
-        <div class="message-header">
-          <p id="message" class="is-size-4"></p>
-          <button id="close" class="delete" aria-label="delete"></button>
-        </div>
-        <div class="message-body">
-          <div class="buttons is-centered">
-            <a class="button is-medium is-info" id="cancelBtn">
-              <span class="icon is-small">
-                <i class="fa fa-times"></i>
-              </span>
-              <span>Cancel</span>
-            </a>
-            <a class="button is-medium is-warning" id="confirmBtn">
-              <span class="icon is-small">
-                <i class="fa fa-check"></i>
-              </span>
-              <span>Confirm</span>
-            </a>
-            <a class="button is-medium is-primary" id="okBtn">
-              <span class="icon is-small">
-                <i class="fa fa-check"></i>
-              </span>
-              <span>OK</span>
-            </a>
+    <!-- alert modal -->
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <article class="message is-warning">
+          <div class="message-header">
+            <p id="message" class="is-size-4"></p>
+            <button id="close" class="delete" aria-label="delete"></button>
           </div>
-        </div>
-      </article>
+          <div class="message-body">
+            <div class="buttons is-centered">
+              <a class="button is-medium is-info" id="cancelBtn">
+                <span class="icon is-small">
+                  <i class="fa fa-times"></i>
+                </span>
+                <span>Cancel</span>
+              </a>
+              <a class="button is-medium is-warning" id="confirmBtn">
+                <span class="icon is-small">
+                  <i class="fa fa-check"></i>
+                </span>
+                <span>Confirm</span>
+              </a>
+              <a class="button is-medium is-primary" id="okBtn">
+                <span class="icon is-small">
+                  <i class="fa fa-check"></i>
+                </span>
+                <span>OK</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
     </div>
-    <button class="modal-close is-large" aria-label="close"></button>
   </div>
 
   <script src="app.js"></script>
