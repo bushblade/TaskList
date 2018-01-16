@@ -1,5 +1,3 @@
-//a task list that will store tasks in local storage
-
 //get elements
 const form = document.getElementById('task-form');
 const taskInput = document.getElementById('task-input');
@@ -26,8 +24,12 @@ let taskList = [{
 (function () {
   // document.addEventListener('DOMContentLoaded', getLocal());
   form.addEventListener('submit', addTask);
-  clearBtn.addEventListener('click', function(){warning('Remove all tasks from storage?', true);});
+  clearBtn.addEventListener('click', function () {
+    warning('Remove all tasks from storage?', true);
+  });
   tableBody.addEventListener('click', deleteOrCheck);
+  document.getElementById('close').addEventListener('click', modalToggle);
+  document.querySelector('.modal-close').addEventListener('click', modalToggle);
   getLocal(taskList);
   taskList.forEach(writeTask);
 })();
@@ -67,12 +69,7 @@ function deleteOrCheck(e) {
   //delete task
   if (e.target.classList.contains('delete')) {
     let taskText = e.target.parentElement.textContent;
-    //remove it from the array
-    for (i = 0; i < taskList.length; i++) {
-      if (taskList[i].task === taskText) {
-        taskList.splice(i, 1);
-      }
-    }
+    taskList = taskList.filter(thisTask => thisTask.task !== taskText);
     //remove from dom
     e.target.parentElement.parentElement.remove();
   }
@@ -80,24 +77,24 @@ function deleteOrCheck(e) {
   else if (e.target.localName === 'td') {
     e.target.classList.toggle('checked');
     let taskText = e.target.textContent;
-    for (i = 0; i < taskList.length; i++) {
-      if (taskList[i].task === taskText) {
-        taskList[i].checkClass = taskList[i].checkClass === '' ? 'checked' : '';
+    taskList.forEach(function (thisTask) {
+      if (thisTask.task === taskText) {
+        thisTask.checkClass = (thisTask.checkClass === '') ? 'checked' : '';
       }
-    }
+    });
   }
   setLocal(taskList);
 }
 
 //clear all tasks
-function clearTasks() {  
-    //empty array
-    taskList = [];
-    //empty table
-    tableBody.innerHTML = '';
-    //clear local
-    localStorage.clear();  
-    modalToggle();
+function clearTasks() {
+  //empty array
+  taskList = [];
+  //empty table
+  tableBody.innerHTML = '';
+  //clear local
+  localStorage.clear();
+  modalToggle();
 }
 
 //set local storage
@@ -116,15 +113,13 @@ function getLocal(array) {
 
 
 function warning(message, buttons = false) {
-  document.getElementById('close').addEventListener('click', modalToggle);
-  document.querySelector('.modal-close').addEventListener('click', modalToggle);
   modalMessage.innerHTML = `${message}`;
   modalToggle();
-  if (buttons === true){
+  if (buttons === true) {
     cancelBtn.style.display = 'inline-block';
     confirmBtn.style.display = 'inline-block';
     okBtn.style.display = 'none';
-  }else{
+  } else {
     cancelBtn.style.display = 'none';
     confirmBtn.style.display = 'none';
     okBtn.style.display = 'inline-block';
