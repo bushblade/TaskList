@@ -20,13 +20,10 @@ let taskList = [{
   }
 ];
 
-// load event listeners
+// load event listeners and get any tasks stored in local storage on loading
 (function () {
-  // document.addEventListener('DOMContentLoaded', getLocal());
   form.addEventListener('submit', addTask);
-  clearBtn.addEventListener('click', function () {
-    warning('Remove all tasks from storage?', true);
-  });
+  clearBtn.addEventListener('click', () => warning('Remove all tasks from storage?', true));
   tableBody.addEventListener('click', deleteOrCheck);
   document.getElementById('close').addEventListener('click', modalToggle);
   document.querySelector('.modal-close').addEventListener('click', modalToggle);
