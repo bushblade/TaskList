@@ -31,6 +31,12 @@ let taskList = [{
   taskList.forEach(writeTask);
 })();
 
+//modal toggle
+function modalToggle() {
+  modal.classList.toggle('is-active');
+}
+
+
 //new task constructor
 function Task(task, checkClass = '') {
   this.task = task;
@@ -74,13 +80,14 @@ function deleteOrCheck(e) {
   else if (e.target.localName === 'td') {
     e.target.classList.toggle('checked');
     let taskText = e.target.textContent;
-    taskList.forEach(function (thisTask) {
-      if (thisTask.task === taskText) {
-        thisTask.checkClass = (thisTask.checkClass === '') ? 'checked' : '';
-      }
-    });
+    taskList.forEach(thisTask => thisTask.task === taskText ? toggleChecked(thisTask) : false);
   }
   setLocal(taskList);
+}
+
+//toggle a checked state function
+function toggleChecked(x) {
+  x.checkClass === '' ? x.checkClass = 'checked' : x.checkClass = '';
 }
 
 //clear all tasks
@@ -124,8 +131,4 @@ function warning(message, buttons = false) {
   cancelBtn.addEventListener('click', modalToggle);
   okBtn.addEventListener('click', modalToggle);
   confirmBtn.addEventListener('click', clearTasks);
-}
-
-function modalToggle() {
-  modal.classList.toggle('is-active');
 }
