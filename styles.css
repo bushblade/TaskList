@@ -1,6 +1,6 @@
 html {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -14,11 +14,17 @@ body {
   color: hsl(0, 0%, 71%);
 }
 
-#cancelBtn, #confirmBtn, #okBtn {
+#cancelBtn,
+#confirmBtn {
   display: none;
 }
 
+#okBtn {
+  display: inline-block;
+}
+
 /* fix for bulma columns padding issue */
+
 .columns {
   margin: 0;
 }
