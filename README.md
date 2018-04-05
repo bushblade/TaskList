@@ -2,7 +2,7 @@
 
 It seems everyone learning Javascript at some point makes a task/todo list, here is mine.
 
-- Bulma CSS framework https://bulma.io/
+- [Bulma](https://bulma.io/) CSS framework 
 - Local storage
 - Check tasks off
 - Delete tasks
